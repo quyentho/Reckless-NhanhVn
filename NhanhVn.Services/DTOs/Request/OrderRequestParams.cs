@@ -3,7 +3,7 @@
 namespace NhanhVn.Services.Models.Request
 {
     // reference https://apidocs.nhanh.vn/order/index
-    internal class OrderRequestParams : IRequestParams
+    public class OrderRequestParams : IRequestParams
     {
         [JsonConverter(typeof(CustomDateTimeConverter))]
         public DateTime? FromDate { get; set; }

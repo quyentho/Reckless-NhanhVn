@@ -11,24 +11,16 @@ using System.Text.Json.Serialization;
 
 namespace NhanhVn.Services.Services
 {
-    public class OrderServices : IOrderServices
+    public class OrderServices :NhanhServiceBase, IOrderServices
     {
-        private static readonly IConfiguration _config;
-        private static readonly string _orderUrl;
-
         static OrderServices()
         {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile("appsettings.development.json", optional: true, reloadOnChange: true)
-                .Build();
-
-            _config = config;
-            _orderUrl = _config.GetRequiredSection("orderApiUrl").Value;
         }
         public OrderServices()
         {
         }
+
+        protected override string Url { get => Config.GetRequiredSection("orderApiUrl").Value; }
 
         public async Task<Response<Order>> GetOrdersByDateAsync(DateTime fromDate, DateTime toDate)
         {
@@ -36,12 +28,7 @@ namespace NhanhVn.Services.Services
             orderRequestParams.FromDate = fromDate;
             orderRequestParams.ToDate = toDate;
 
-            var response = await HttpRequestHelpers.GetResponseAsync(_config, _orderUrl, orderRequestParams);
-
-            response.EnsureSuccessStatusCode();
-            var responseContent = await response.Content.ReadAsStringAsync();
-
-            return JsonHelpers.DeserializeFromCamalCaseContent<Response<Order>>(responseContent, "data.orders");
+            return await base.GetResponseAsync<Response<Order>>(orderRequestParams);
         }
 
     }

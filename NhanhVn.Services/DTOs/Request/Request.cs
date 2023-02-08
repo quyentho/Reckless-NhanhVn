@@ -16,21 +16,13 @@ namespace NhanhVn.Services.Models.Request
         public string AccessToken { get; set; }
         public string Data { get; set; }
 
-        public Request(IConfiguration configuration,IRequestParams requestParams)
+        public Request(string version, string appId, string businessId, string accessToken, string data)
         {
-            Version = configuration.GetRequiredSection("Version").Value;
-            AppId = configuration.GetRequiredSection("AppId").Value;
-            BusinessId = configuration.GetRequiredSection("BusinessId").Value;
-            AccessToken = configuration.GetRequiredSection("AccessToken").Value;
-
-            var options = new JsonSerializerOptions
-            {
-                IgnoreNullValues = true
-            };
-
-            string json = JsonSerializer.Serialize(requestParams, options);
-
-            Data = json;
+            Version = version;
+            AppId = appId;
+            BusinessId = businessId;
+            AccessToken = accessToken;
+            Data = data;
         }
     }
 }

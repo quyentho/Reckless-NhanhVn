@@ -20,9 +20,8 @@ namespace NhanhVn.Services.Helpers
             // use Singleton HttpClient for now, may try to implement IHttpFactory instead.
             _client = new HttpClient();
         }
-        public static async Task<HttpResponseMessage> GetResponseAsync(IConfiguration configuration, string url, IRequestParams orderRequest)
+        public static async Task<HttpResponseMessage> GetResponseAsync(string url, Request request)
         {
-            var request = new Request(configuration, orderRequest);
             var content = GetFormDataContent(request);
 
             return await _client.PostAsync(url, content);
