@@ -1,4 +1,4 @@
-﻿namespace NhanhVn.Services.Models.Response
+﻿namespace NhanhVn.Services.Models
 {
     public class Product
     {

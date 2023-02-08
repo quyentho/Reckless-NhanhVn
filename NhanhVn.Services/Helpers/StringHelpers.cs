@@ -1,10 +1,9 @@
 ﻿using System.Text;
 
-namespace NhanhVn.Services
+namespace NhanhVn.Services.Helpers
 {
-    internal static class StringUtils
+    internal static class StringHelpers
     {
-
         public static string LowerFirstCharacter(string value)
         {
             StringBuilder stringBuilder = new StringBuilder();

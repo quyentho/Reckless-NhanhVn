@@ -6,6 +6,6 @@ Console.WriteLine("Hello, World!");
 
 
 var orderService = new OrderServices();
-await orderService.GetOrdersByDateAsync(new DateTime(2022, 09, 25),new DateTime(2022, 09, 25));
+var orders = await orderService.GetOrdersByDateAsync(new DateTime(2022, 09, 25),new DateTime(2022, 09, 25));
 
 Console.ReadKey();
