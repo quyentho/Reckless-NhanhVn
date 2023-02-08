@@ -1,6 +1,6 @@
-﻿namespace NhanhVn.Services.Models
+﻿namespace NhanhVn.Common.Models
 {
-    public class Product
+    public class NhanhProduct
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }

@@ -1,10 +1,10 @@
-﻿using NhanhVn.Services.DTOs.Response;
-using NhanhVn.Services.Models;
+﻿using NhanhVn.Common.Models;
+using NhanhVn.Services.DTOs.Response;
 
 namespace NhanhVn.Services.Services
 {
     public interface IOrderServices
     {
-        Task<Response<Order>> GetOrdersByDateAsync(DateTime fromDate, DateTime toDate);
+        Task<Response<NhanhOrder>> GetOrdersByDateAsync(DateTime fromDate, DateTime toDate);
     }
 }

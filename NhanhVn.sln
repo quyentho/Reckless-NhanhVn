@@ -8,7 +8,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkWithPostgres
 		{16CB658B-EC24-4FD6-A2C3-EA5C7504246B} = {16CB658B-EC24-4FD6-A2C3-EA5C7504246B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NhanhVn.Services", "NhanhVn.Services\NhanhVn.Services.csproj", "{16CB658B-EC24-4FD6-A2C3-EA5C7504246B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NhanhVn.Services", "NhanhVn.Services\NhanhVn.Services.csproj", "{16CB658B-EC24-4FD6-A2C3-EA5C7504246B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NhanhVn.EntityFramework", "NhanhVn.EntityFramework\NhanhVn.EntityFramework.csproj", "{EADC0FEC-A026-48A0-ABDF-DA68EF4DD688}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NhanhVn.Common", "NhanhVn.Common\NhanhVn.Common.csproj", "{068001C3-E247-4016-AB8F-CD848035E6B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +28,14 @@ Global
 		{16CB658B-EC24-4FD6-A2C3-EA5C7504246B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16CB658B-EC24-4FD6-A2C3-EA5C7504246B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16CB658B-EC24-4FD6-A2C3-EA5C7504246B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EADC0FEC-A026-48A0-ABDF-DA68EF4DD688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EADC0FEC-A026-48A0-ABDF-DA68EF4DD688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EADC0FEC-A026-48A0-ABDF-DA68EF4DD688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EADC0FEC-A026-48A0-ABDF-DA68EF4DD688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{068001C3-E247-4016-AB8F-CD848035E6B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{068001C3-E247-4016-AB8F-CD848035E6B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{068001C3-E247-4016-AB8F-CD848035E6B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{068001C3-E247-4016-AB8F-CD848035E6B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

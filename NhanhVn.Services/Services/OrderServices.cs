@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using NhanhVn.Common.Models;
 using NhanhVn.Services.DTOs.Response;
 using NhanhVn.Services.Helpers;
 using NhanhVn.Services.Models;
@@ -13,22 +14,19 @@ namespace NhanhVn.Services.Services
 {
     public class OrderServices :NhanhServiceBase, IOrderServices
     {
-        static OrderServices()
-        {
-        }
         public OrderServices()
         {
         }
 
         protected override string Url { get => Config.GetRequiredSection("orderApiUrl").Value; }
 
-        public async Task<Response<Order>> GetOrdersByDateAsync(DateTime fromDate, DateTime toDate)
+        public async Task<Response<NhanhOrder>> GetOrdersByDateAsync(DateTime fromDate, DateTime toDate)
         {
             var orderRequestParams = new OrderRequestParams();
             orderRequestParams.FromDate = fromDate;
             orderRequestParams.ToDate = toDate;
 
-            return await base.GetResponseAsync<Response<Order>>(orderRequestParams);
+            return await base.GetResponseAsync<Response<NhanhOrder>>(orderRequestParams);
         }
 
     }

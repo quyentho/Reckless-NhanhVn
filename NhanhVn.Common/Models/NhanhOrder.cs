@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NhanhVn.Services.Models
+namespace NhanhVn.Common.Models
 {
 
-    public class Order
+    public class NhanhOrder
     {
         public int Id { get; set; }
 
         // kenh ban Shopee, Lazada,...
         public int SaleChannel { get; set; }
-        public object MerchantTrackingNumber { get; set; }
+        public string MerchantTrackingNumber { get; set; }
+        public DateTime CreatedDateTime { get; set; }
         // id kho hang
         public int DepotId { get; set; }
         public string DepotName { get; set; }
@@ -42,7 +43,7 @@ namespace NhanhVn.Services.Models
 
         // Tong thu khach
         public int CalcTotalMoney { get; set; }
-        public List<Product> Products { get; set; }
+        public List<NhanhProduct> Products { get; set; }
     }
 
 }
