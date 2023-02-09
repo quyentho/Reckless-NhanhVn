@@ -1,10 +1,14 @@
 ﻿using EntityFrameworkWithPostgresPOC.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EntityFrameworkWithPostgresPOC
+namespace NhanhVn.EntityFramework
 {
     public class ApplicationDbContext : DbContext
     {
+        public ApplicationDbContext()
+        {
+
+        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }

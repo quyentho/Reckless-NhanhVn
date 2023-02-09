@@ -7,9 +7,9 @@ namespace EntityFrameworkWithPostgresPOC.Models
     {
         public  int Id { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [Column(TypeName = "jsonb")]
-        public NhanhOrder Orders { get; set; }
+        public NhanhOrder Data { get; set; }
     }
 }

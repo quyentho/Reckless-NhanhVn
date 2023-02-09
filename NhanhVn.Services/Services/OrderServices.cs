@@ -23,8 +23,8 @@ namespace NhanhVn.Services.Services
         public async Task<Response<NhanhOrder>> GetOrdersByDateAsync(DateTime fromDate, DateTime toDate)
         {
             var orderRequestParams = new OrderRequestParams();
-            orderRequestParams.FromDate = fromDate;
-            orderRequestParams.ToDate = toDate;
+            orderRequestParams.FromDate = DateOnly.FromDateTime(fromDate);
+            orderRequestParams.ToDate = DateOnly.FromDateTime(toDate);
 
             return await base.GetResponseAsync<Response<NhanhOrder>>(orderRequestParams);
         }

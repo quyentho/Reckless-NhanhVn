@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nhanh.EntityFramework
+namespace NhanhVn.EntityFramework
 {
-    internal class DbContextFactory: IDesignTimeDbContextFactory<ApplicationDbContext>
+    public class DbContextFactory: IDesignTimeDbContextFactory<ApplicationDbContext>
     {
         public ApplicationDbContext CreateDbContext(string[] args)
         {

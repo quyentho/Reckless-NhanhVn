@@ -39,7 +39,8 @@ namespace NhanhVn.Services.Services
         {
             var options = new JsonSerializerOptions
             {
-                IgnoreNullValues = true
+                IgnoreNullValues = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             };
 
             string json = JsonSerializer.Serialize(orderRequestParams, options);
@@ -51,7 +52,7 @@ namespace NhanhVn.Services.Services
             response.EnsureSuccessStatusCode();
             var responseContent = await response.Content.ReadAsStringAsync();
 
-            return JsonHelpers.DeserializeFromCamalCaseContent<T>(responseContent, "data.orders");
+            return JsonHelpers.DeserializeByPath<T>(responseContent, "data.orders", options);
         }
     }
 }

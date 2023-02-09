@@ -26,17 +26,12 @@ namespace NhanhVn.Services.Helpers
             return currentNode;
         }
 
-        public static T DeserializeFromCamalCaseContent<T>(string jsonString, string keyPath)
+        public static T DeserializeByPath<T>(string jsonString, string keyPath, JsonSerializerOptions? options = null)
         {
             using JsonDocument document = JsonDocument.Parse(jsonString);
 
-            JsonElement studentsElement = GetPropertyByKeyPath(document.RootElement, keyPath);
-            return studentsElement.Deserialize<T>(
-                options: new JsonSerializerOptions
-                {
-                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                }
-            );
+            JsonElement element = GetPropertyByKeyPath(document.RootElement, keyPath);
+            return element.Deserialize<T>(options);
         }
     }
 }

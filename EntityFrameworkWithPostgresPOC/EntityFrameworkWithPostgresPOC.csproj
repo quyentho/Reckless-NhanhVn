@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NhanhVn.EntityFramework\NhanhVn.EntityFramework.csproj" />
     <ProjectReference Include="..\NhanhVn.Services\NhanhVn.Services.csproj" />
   </ItemGroup>
 

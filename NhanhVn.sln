@@ -6,13 +6,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkWithPostgresPOC", "EntityFrameworkWithPostgresPOC\EntityFrameworkWithPostgresPOC.csproj", "{F50E7866-8877-44A0-8FD2-CCC2227CC5F9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{16CB658B-EC24-4FD6-A2C3-EA5C7504246B} = {16CB658B-EC24-4FD6-A2C3-EA5C7504246B}
+		{EADC0FEC-A026-48A0-ABDF-DA68EF4DD688} = {EADC0FEC-A026-48A0-ABDF-DA68EF4DD688}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NhanhVn.Services", "NhanhVn.Services\NhanhVn.Services.csproj", "{16CB658B-EC24-4FD6-A2C3-EA5C7504246B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NhanhVn.EntityFramework", "NhanhVn.EntityFramework\NhanhVn.EntityFramework.csproj", "{EADC0FEC-A026-48A0-ABDF-DA68EF4DD688}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NhanhVn.EntityFramework", "NhanhVn.EntityFramework\NhanhVn.EntityFramework.csproj", "{EADC0FEC-A026-48A0-ABDF-DA68EF4DD688}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NhanhVn.Common", "NhanhVn.Common\NhanhVn.Common.csproj", "{068001C3-E247-4016-AB8F-CD848035E6B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NhanhVn.Common", "NhanhVn.Common\NhanhVn.Common.csproj", "{068001C3-E247-4016-AB8F-CD848035E6B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
