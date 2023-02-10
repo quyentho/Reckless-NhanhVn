@@ -28,7 +28,7 @@ var mapperConfig = new MapperConfiguration(mc =>
 });
 IMapper mapper = mapperConfig.CreateMapper();
 
-var newOrder = mapper.Map<List<Order>>(orderResponses.Data.Select(d=>d.Value));
-await context.BulkInsertAsync(newOrder);
+var newOrders = mapper.Map<List<Order>>(orderResponses.Data.Select(d=>d.Value));
+await context.Orders.AddRangeAsync(newOrders);
 context.SaveChangesAsync();
 Console.ReadKey();
