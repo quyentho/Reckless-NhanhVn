@@ -30,3 +30,4 @@ nuget.config
 *.sln.iml
 
 .vs/
+postgres-data/

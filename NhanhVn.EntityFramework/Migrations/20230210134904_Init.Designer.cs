@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NhanhVn.Common.Models;
 using NhanhVn.EntityFramework;
@@ -13,9 +14,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NhanhVn.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230210134904_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,10 +107,6 @@ namespace NhanhVn.EntityFramework.Migrations
                     b.Property<int?>("MoneyTransfer")
                         .HasColumnType("integer")
                         .HasColumnName("moneytransfer");
-
-                    b.Property<int>("NhanhOrderId")
-                        .HasColumnType("integer")
-                        .HasColumnName("nhanhorderid");
 
                     b.Property<int?>("OverWeightShipFee")
                         .HasColumnType("integer")

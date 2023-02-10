@@ -3,7 +3,7 @@
 namespace NhanhVn.Common.Models
 {
 
-    public class NhanhOrder
+    public class NhanhOrder: INhanhModel
     {
         public int? Id { get; set; }
 

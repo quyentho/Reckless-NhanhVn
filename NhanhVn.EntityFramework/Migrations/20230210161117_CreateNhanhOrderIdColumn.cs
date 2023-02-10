@@ -5,24 +5,25 @@
 namespace NhanhVn.EntityFramework.Migrations
 {
     /// <inheritdoc />
-    public partial class RenameOrders : Migration
+    public partial class CreateNhanhOrderIdColumn : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "Orders",
-                table: "Orders",
-                newName: "NhanhOrder");
+            migrationBuilder.AddColumn<int>(
+                name: "nhanhorderid",
+                table: "orders",
+                type: "integer",
+                nullable: false,
+                defaultValue: 0);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "NhanhOrder",
-                table: "Orders",
-                newName: "Orders");
+            migrationBuilder.DropColumn(
+                name: "nhanhorderid",
+                table: "orders");
         }
     }
 }

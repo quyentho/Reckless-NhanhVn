@@ -12,19 +12,11 @@ namespace NhanhVn.Services.Helpers
 {
     internal class HttpRequestHelpers
     {
-        private static readonly HttpClient _client;
-
-        static HttpRequestHelpers()
-        {
-            // https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests
-            // use Singleton HttpClient for now, may try to implement IHttpFactory instead.
-            _client = new HttpClient();
-        }
-        public static async Task<HttpResponseMessage> GetResponseAsync(string url, Request request)
+        public static async Task<HttpResponseMessage> GetResponseAsync(HttpClient httpClient,string url, Request request)
         {
             var content = GetFormDataContent(request);
 
-            return await _client.PostAsync(url, content);
+            return await httpClient.PostAsync(url, content);
         }
 
         private static MultipartFormDataContent GetFormDataContent(Request request)

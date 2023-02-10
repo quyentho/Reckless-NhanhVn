@@ -18,6 +18,7 @@ namespace NhanhVn.EntityFramework
             var context = new ApplicationDbContext(
                 builder
                 .UseNpgsql("Host=localhost;Database=nhanhDb;Username=postgres;Password=password")
+                .UseLowerCaseNamingConvention()
                 .Options);
 
             return context;

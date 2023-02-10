@@ -1,4 +1,6 @@
-﻿using System.Text.Json;
+﻿using NhanhVn.Common.Models;
+using NhanhVn.Services.DTOs.Response;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 
 namespace NhanhVn.Services.Helpers
@@ -27,6 +29,7 @@ namespace NhanhVn.Services.Helpers
         }
 
         public static T DeserializeByPath<T>(string jsonString, string keyPath, JsonSerializerOptions? options = null)
+            where T : class
         {
             using JsonDocument document = JsonDocument.Parse(jsonString);
 

@@ -5,6 +5,6 @@ namespace NhanhVn.Services.Services
 {
     public interface IOrderServices
     {
-        Task<Response<NhanhOrder>> GetOrdersByDateAsync(DateTime fromDate, DateTime toDate);
+        Task<Response<NhanhOrder>> GetOrdersByDatesAsync(DateTime fromDate, DateTime toDate);
     }
 }

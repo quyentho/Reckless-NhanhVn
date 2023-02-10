@@ -1,17 +1,16 @@
 ﻿using NhanhVn.Common;
-using System;
+using NhanhVn.Services.Models.Request;
 using System.Text.Json.Serialization;
 
-namespace NhanhVn.Services.Models.Request
+namespace NhanhVn.Services.DTOs.Request
 {
-    // reference https://apidocs.nhanh.vn/order/index
-    public class OrderRequestParams : IRequestParams
-    {
+    public class BillRequestParams: IRequestParams
+    { 
         [JsonConverter(typeof(CustomDateOnlyConverter))]
         public DateOnly? FromDate { get; set; }
         [JsonConverter(typeof(CustomDateOnlyConverter))]
         public DateOnly? ToDate { get; set; }
-        public int? Statuses { get; set; }
-        public int? Page { get; set; } = 1;
+        public int? Type { get; set; }
+        public int? Mode { get; set; }
     }
 }
