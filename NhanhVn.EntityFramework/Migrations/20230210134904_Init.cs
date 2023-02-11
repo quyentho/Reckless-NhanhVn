@@ -46,7 +46,7 @@ namespace NhanhVn.EntityFramework.Migrations
                     statusname = table.Column<string>(type: "text", nullable: true),
                     statuscode = table.Column<string>(type: "text", nullable: true),
                     calctotalmoney = table.Column<int>(type: "integer", nullable: true),
-                    products = table.Column<List<NhanhProduct>>(type: "jsonb", nullable: true)
+                    products = table.Column<List<NhanhOrderProduct>>(type: "jsonb", nullable: true)
                 },
                 constraints: table =>
                 {

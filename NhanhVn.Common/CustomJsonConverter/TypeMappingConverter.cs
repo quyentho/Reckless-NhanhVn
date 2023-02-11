@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace NhanhVn.Common
+namespace NhanhVn.Common.CustomJsonConverter
 {
     public class TypeMappingConverter<TType, TImplementation> : JsonConverter<TType>
       where TImplementation : TType

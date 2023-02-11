@@ -14,8 +14,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NhanhVn.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230210134904_Init")]
-    partial class Init
+    [Migration("20230211131946_ChangeMoneyTypeToDouble")]
+    partial class ChangeMoneyTypeToDouble
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,8 +36,8 @@ namespace NhanhVn.EntityFramework.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CalcTotalMoney")
-                        .HasColumnType("integer")
+                    b.Property<double?>("CalcTotalMoney")
+                        .HasColumnType("double precision")
                         .HasColumnName("calctotalmoney");
 
                     b.Property<int?>("CarrierId")
@@ -96,17 +96,21 @@ namespace NhanhVn.EntityFramework.Migrations
                         .HasColumnType("text")
                         .HasColumnName("merchanttrackingnumber");
 
-                    b.Property<int?>("MoneyDeposit")
-                        .HasColumnType("integer")
+                    b.Property<double?>("MoneyDeposit")
+                        .HasColumnType("double precision")
                         .HasColumnName("moneydeposit");
 
-                    b.Property<int?>("MoneyDiscount")
-                        .HasColumnType("integer")
+                    b.Property<double?>("MoneyDiscount")
+                        .HasColumnType("double precision")
                         .HasColumnName("moneydiscount");
 
-                    b.Property<int?>("MoneyTransfer")
-                        .HasColumnType("integer")
+                    b.Property<double?>("MoneyTransfer")
+                        .HasColumnType("double precision")
                         .HasColumnName("moneytransfer");
+
+                    b.Property<int>("NhanhId")
+                        .HasColumnType("integer")
+                        .HasColumnName("nhanhid");
 
                     b.Property<int?>("OverWeightShipFee")
                         .HasColumnType("integer")

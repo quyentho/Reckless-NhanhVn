@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using NhanhVn.Common;
+using NhanhVn.Common.CustomJsonConverter;
 using NhanhVn.Common.Models;
 using NhanhVn.Services.DTOs.Response;
 using NhanhVn.Services.Helpers;
@@ -51,7 +51,7 @@ namespace NhanhVn.Services.Services
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 Converters =
                 {
-                   new TypeMappingConverter<IRequestParams, RequestParamsType>()
+                   new TypeMappingConverter<IRequestParams, RequestParamsType>(),
                 }
             };
 

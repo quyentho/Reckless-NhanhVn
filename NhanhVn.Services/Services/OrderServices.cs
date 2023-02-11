@@ -24,6 +24,11 @@ namespace NhanhVn.Services.Services
             orderRequestParams.FromDate = DateOnly.FromDateTime(fromDate);
             orderRequestParams.ToDate = DateOnly.FromDateTime(toDate);
 
+            return await GetAllResponse(orderRequestParams);
+        }
+
+        private async Task<Response<NhanhOrder>> GetAllResponse(OrderRequestParams orderRequestParams)
+        {
             var firstPageResponse = await base.GetResponseAsync<OrderRequestParams, NhanhOrder>(orderRequestParams);
 
             if (firstPageResponse.TotalPages == 1)
@@ -49,8 +54,7 @@ namespace NhanhVn.Services.Services
                                            .ToDictionary(x => x.Key, x => x.Value);
             }
 
-            return firstPageResponse; 
+            return firstPageResponse;
         }
-
     }
 }

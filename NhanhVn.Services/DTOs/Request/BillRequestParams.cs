@@ -1,4 +1,4 @@
-﻿using NhanhVn.Common;
+﻿using NhanhVn.Common.CustomJsonConverter;
 using NhanhVn.Services.Models.Request;
 using System.Text.Json.Serialization;
 
@@ -12,5 +12,6 @@ namespace NhanhVn.Services.DTOs.Request
         public DateOnly? ToDate { get; set; }
         public int? Type { get; set; }
         public int? Mode { get; set; }
+        public int? Page { get; set; } = 1;
     }
 }

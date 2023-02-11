@@ -14,8 +14,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NhanhVn.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230210134904_Init")]
-    partial class Init
+    [Migration("20230211130959_RenameNhanhOrderId")]
+    partial class RenameNhanhOrderId
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,6 +107,10 @@ namespace NhanhVn.EntityFramework.Migrations
                     b.Property<int?>("MoneyTransfer")
                         .HasColumnType("integer")
                         .HasColumnName("moneytransfer");
+
+                    b.Property<int>("NhanhId")
+                        .HasColumnType("integer")
+                        .HasColumnName("nhanhid");
 
                     b.Property<int?>("OverWeightShipFee")
                         .HasColumnType("integer")

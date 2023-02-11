@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace NhanhVn.Common
+namespace NhanhVn.Common.CustomJsonConverter
 {
     public class CustomDateTimeConverter : JsonConverter<DateTime>
     {

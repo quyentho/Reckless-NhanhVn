@@ -116,7 +116,7 @@ namespace NhanhVn.EntityFramework.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("overweightshipfee");
 
-                    b.Property<List<NhanhProduct>>("Products")
+                    b.Property<List<NhanhOrderProduct>>("Products")
                         .HasColumnType("jsonb")
                         .HasColumnName("products");
 

@@ -7,7 +7,6 @@ namespace NhanhVn.Services.Helpers
 {
     public class JsonHelpers
     {
-
         private static JsonElement GetPropertyByKeyPath(JsonElement node, string keyPath)
         {
             var currentNode = node;

@@ -17,12 +17,12 @@ namespace NhanhVn.Services.DTOs.Response
 
         public int Page { get; set; }
 
-        //https://stackoverflow.com/a/43715009/11309214
-        // the trick to allow multiple json property name
         [JsonPropertyName("orders")]
         public Dictionary<string,T> Data { get; set; }
 
+        //https://stackoverflow.com/a/43715009/11309214
+        // the trick to allow multiple json property name
         [JsonPropertyName("bill")]
-        private Dictionary<string, T>  Bills { set { Data = value; } }
+        public Dictionary<string, T>  Bill { get => Data;  set { Data = value; } }
     }
 }

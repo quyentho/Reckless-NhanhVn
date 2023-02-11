@@ -1,4 +1,4 @@
-﻿using NhanhVn.Common;
+﻿using NhanhVn.Common.CustomJsonConverter;
 using NhanhVn.Common.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -8,7 +8,7 @@ namespace EntityFrameworkWithPostgresPOC.Models
     public class Order
     {
         public  int Id { get; set; }
-        public  int NhanhOrderId { get; set; }
+        public  int NhanhId { get; set; }
 
         // kenh? ban Shopee, Lazada,...
         public int? SaleChannel { get; set; }
@@ -20,9 +20,11 @@ namespace EntityFrameworkWithPostgresPOC.Models
         public string? DepotName { get; set; }
         public string? Type { get; set; }
         public int? TypeId { get; set; }
-        public int? MoneyDiscount { get; set; }
-        public int? MoneyDeposit { get; set; }
-        public int? MoneyTransfer { get; set; }
+
+        // tong discount tren hoa don
+        public double? MoneyDiscount { get; set; }
+        public double? MoneyDeposit { get; set; }
+        public double? MoneyTransfer { get; set; }
         public int? CarrierId { get; set; }
         public string? CarrierName { get; set; }
         public int? ShipFee { get; set; }
@@ -42,9 +44,9 @@ namespace EntityFrameworkWithPostgresPOC.Models
         public string? StatusCode { get; set; }
 
         // Tong? thu khach
-        public int? CalcTotalMoney { get; set; }
+        public double? CalcTotalMoney { get; set; }
 
         [Column(TypeName = "jsonb")]
-        public List<NhanhProduct>? Products { get; set; }
+        public List<Product>? Products { get; set; }
     }
 }

@@ -33,8 +33,8 @@ namespace NhanhVn.EntityFramework.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CalcTotalMoney")
-                        .HasColumnType("integer")
+                    b.Property<double?>("CalcTotalMoney")
+                        .HasColumnType("double precision")
                         .HasColumnName("calctotalmoney");
 
                     b.Property<int?>("CarrierId")
@@ -93,27 +93,27 @@ namespace NhanhVn.EntityFramework.Migrations
                         .HasColumnType("text")
                         .HasColumnName("merchanttrackingnumber");
 
-                    b.Property<int?>("MoneyDeposit")
-                        .HasColumnType("integer")
+                    b.Property<double?>("MoneyDeposit")
+                        .HasColumnType("double precision")
                         .HasColumnName("moneydeposit");
 
-                    b.Property<int?>("MoneyDiscount")
-                        .HasColumnType("integer")
+                    b.Property<double?>("MoneyDiscount")
+                        .HasColumnType("double precision")
                         .HasColumnName("moneydiscount");
 
-                    b.Property<int?>("MoneyTransfer")
-                        .HasColumnType("integer")
+                    b.Property<double?>("MoneyTransfer")
+                        .HasColumnType("double precision")
                         .HasColumnName("moneytransfer");
 
-                    b.Property<int>("NhanhOrderId")
+                    b.Property<int>("NhanhId")
                         .HasColumnType("integer")
-                        .HasColumnName("nhanhorderid");
+                        .HasColumnName("nhanhid");
 
                     b.Property<int?>("OverWeightShipFee")
                         .HasColumnType("integer")
                         .HasColumnName("overweightshipfee");
 
-                    b.Property<List<NhanhProduct>>("Products")
+                    b.Property<List<NhanhOrderProduct>>("Products")
                         .HasColumnType("jsonb")
                         .HasColumnName("products");
 
