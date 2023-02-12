@@ -39,8 +39,39 @@ namespace NhanhVn.Services.Services
             this._httpClient = httpClient;
         }
 
+        protected async Task<Response<ResponseType>> GetAllResponseAsync<RequestParamsType, ResponseType>(IRequestParams orderRequestParams)
+            where ResponseType : INhanhModel
+            where RequestParamsType : IRequestParams
+        {
+            var firstPageResponse = await GetResponseAsync<RequestParamsType, ResponseType>(orderRequestParams);
 
-        protected async Task<Response<ResponseType>> GetResponseAsync<RequestParamsType, ResponseType>(IRequestParams orderRequestParams)
+            if (firstPageResponse.TotalPages == 1)
+            {
+                return firstPageResponse;
+            }
+
+            // there is more than one page, keep request for more data
+            List<Task<Response<ResponseType>>> tasks = new List<Task<Response<ResponseType>>>();
+            for (int page = 2; page <= firstPageResponse.TotalPages; page++)
+            {
+                orderRequestParams.Page = page;
+                tasks.Add(GetResponseAsync<RequestParamsType, ResponseType>(orderRequestParams));
+            }
+
+            await Task.WhenAll(tasks);
+
+
+            foreach (var task in tasks)
+            {
+                var nextPageResponse = await task;
+                firstPageResponse.Data = firstPageResponse.Data.Concat(nextPageResponse.Data)
+                                           .ToDictionary(x => x.Key, x => x.Value);
+            }
+
+            return firstPageResponse;
+        }
+
+        private async Task<Response<ResponseType>> GetResponseAsync<RequestParamsType, ResponseType>(IRequestParams orderRequestParams)
             where ResponseType : INhanhModel
             where RequestParamsType : IRequestParams
 

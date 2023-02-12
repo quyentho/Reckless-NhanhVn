@@ -1,15 +1,18 @@
 ﻿using System.Text.Json.Serialization;
 using NhanhVn.Common.CustomJsonConverter;
+using NhanhVn.Common.Enums;
 
 namespace NhanhVn.Common.Models
 {
 
-    public class NhanhOrder: INhanhModel
+    public class NhanhOrder : INhanhModel
     {
         public int? Id { get; set; }
 
         // kenh? ban Shopee, Lazada,...
-        public int? SaleChannel { get; set; }
+
+        [JsonConverter(typeof(CustomEnumToStringConverter<SaleChannel>))]
+        public SaleChannel? SaleChannel { get; set; }
         public string? MerchantTrackingNumber { get; set; }
         [JsonConverter(typeof(CustomDateTimeConverter))]
         public DateTime CreatedDateTime { get; set; }
@@ -37,9 +40,15 @@ namespace NhanhVn.Common.Models
         // Ngay? giao hang thanh cong
         public string? DeliveryDate { get; set; }
         public string? StatusName { get; set; }
-        public string? StatusCode { get; set; }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public OrderStatuses? StatusCode { get; set; }
 
         // Tong? thu khach
+        public double? PreDiscount
+        {
+            get => Products.Sum(p => p.Price * p.Quantity);
+        }
         public double? CalcTotalMoney { get; set; }
         public List<NhanhOrderProduct>? Products { get; set; }
     }

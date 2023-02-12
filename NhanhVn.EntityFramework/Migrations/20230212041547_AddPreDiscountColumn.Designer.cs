@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using EntityFrameworkWithPostgresPOC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NhanhVn.EntityFramework;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -13,9 +14,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NhanhVn.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230212041547_AddPreDiscountColumn")]
+    partial class AddPreDiscountColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,7 +36,7 @@ namespace NhanhVn.EntityFramework.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("CalcTotalMoney")
+                    b.Property<double?>("CalcTotalMoney")
                         .HasColumnType("double precision")
                         .HasColumnName("calctotalmoney");
 
@@ -45,7 +48,7 @@ namespace NhanhVn.EntityFramework.Migrations
                         .HasColumnType("text")
                         .HasColumnName("carriername");
 
-                    b.Property<int>("CodFee")
+                    b.Property<int?>("CodFee")
                         .HasColumnType("integer")
                         .HasColumnName("codfee");
 
@@ -69,11 +72,11 @@ namespace NhanhVn.EntityFramework.Migrations
                         .HasColumnType("text")
                         .HasColumnName("customermobile");
 
-                    b.Property<int>("CustomerShipFee")
+                    b.Property<int?>("CustomerShipFee")
                         .HasColumnType("integer")
                         .HasColumnName("customershipfee");
 
-                    b.Property<int>("DeclaredFee")
+                    b.Property<int?>("DeclaredFee")
                         .HasColumnType("integer")
                         .HasColumnName("declaredfee");
 
@@ -109,11 +112,11 @@ namespace NhanhVn.EntityFramework.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("nhanhid");
 
-                    b.Property<int>("OverWeightShipFee")
+                    b.Property<int?>("OverWeightShipFee")
                         .HasColumnType("integer")
                         .HasColumnName("overweightshipfee");
 
-                    b.Property<double>("PreDiscount")
+                    b.Property<double?>("PreDiscount")
                         .HasColumnType("double precision")
                         .HasColumnName("prediscount");
 
@@ -121,7 +124,7 @@ namespace NhanhVn.EntityFramework.Migrations
                         .HasColumnType("jsonb")
                         .HasColumnName("products");
 
-                    b.Property<int>("ReturnFee")
+                    b.Property<int?>("ReturnFee")
                         .HasColumnType("integer")
                         .HasColumnName("returnfee");
 
@@ -130,7 +133,7 @@ namespace NhanhVn.EntityFramework.Migrations
                         .HasColumnType("VARCHAR")
                         .HasColumnName("salechannel");
 
-                    b.Property<int>("ShipFee")
+                    b.Property<int?>("ShipFee")
                         .HasColumnType("integer")
                         .HasColumnName("shipfee");
 

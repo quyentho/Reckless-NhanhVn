@@ -17,6 +17,10 @@ namespace NhanhVn.Services.DTOs.Response
 
         public int Page { get; set; }
 
+        // this is for product api
+        [JsonPropertyName("currentPage")]
+        public int CurrentPage { get => Page; set { Page = value; } }
+
         [JsonPropertyName("orders")]
         public Dictionary<string,T> Data { get; set; }
 

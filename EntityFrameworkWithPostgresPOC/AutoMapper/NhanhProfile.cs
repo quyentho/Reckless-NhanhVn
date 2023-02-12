@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EntityFrameworkWithPostgresPOC.Models;
+using NhanhVn.Common.Enums;
 using NhanhVn.Common.Models;
 
 namespace EntityFrameworkWithPostgresPOC.AutoMapper
@@ -21,6 +22,9 @@ namespace EntityFrameworkWithPostgresPOC.AutoMapper
                     dest => dest.NhanhId,
                     opt => opt.MapFrom(src => src.Id))
                 .ForMember(
+                    dest => dest.Id,
+                    opt => opt.Ignore())
+                .ForMember(
                     dest => dest.MoneyDiscount,
                     opt => opt.MapFrom(src => src.Discount))
                 .ForMember(
@@ -31,8 +35,15 @@ namespace EntityFrameworkWithPostgresPOC.AutoMapper
                 .ForMember(
                     dest => dest.NhanhProductId,
                     opt => opt.MapFrom(src => src.ProductId))
+                .ForMember(
+                    dest => dest.Id,
+                    opt => opt.Ignore())
+
                 ;
             CreateMap<NhanhBillProduct, Product>()
+                .ForMember(
+                    dest => dest.Id,
+                    opt => opt.Ignore())
                 .ForMember(
                     dest => dest.NhanhProductId,
                     opt => opt.MapFrom(src => src.Id))

@@ -2,5 +2,6 @@
 {
     public interface IRequestParams
     {
+        public int? Page { get; set; }
     }
 }

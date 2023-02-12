@@ -24,37 +24,7 @@ namespace NhanhVn.Services.Services
             orderRequestParams.FromDate = DateOnly.FromDateTime(fromDate);
             orderRequestParams.ToDate = DateOnly.FromDateTime(toDate);
 
-            return await GetAllResponse(orderRequestParams);
-        }
-
-        private async Task<Response<NhanhOrder>> GetAllResponse(OrderRequestParams orderRequestParams)
-        {
-            var firstPageResponse = await base.GetResponseAsync<OrderRequestParams, NhanhOrder>(orderRequestParams);
-
-            if (firstPageResponse.TotalPages == 1)
-            {
-                return firstPageResponse;
-            }
-
-            // there is more than one page, keep request for more data
-            List<Task<Response<NhanhOrder>>> tasks = new List<Task<Response<NhanhOrder>>>();
-            for (int page = 2; page <= firstPageResponse.TotalPages; page++)
-            {
-                orderRequestParams.Page = page;
-                tasks.Add(base.GetResponseAsync<OrderRequestParams, NhanhOrder>(orderRequestParams));
-            }
-
-            await Task.WhenAll(tasks);
-
-
-            foreach (var task in tasks)
-            {
-                var nextPageResponse = await task;
-                firstPageResponse.Data = firstPageResponse.Data.Concat(nextPageResponse.Data)
-                                           .ToDictionary(x => x.Key, x => x.Value);
-            }
-
-            return firstPageResponse;
+            return await base.GetAllResponseAsync<OrderRequestParams, NhanhOrder>(orderRequestParams);
         }
     }
 }
