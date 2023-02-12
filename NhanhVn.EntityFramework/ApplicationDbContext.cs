@@ -1,7 +1,7 @@
-﻿using EntityFrameworkWithPostgresPOC.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NhanhVn.Common.Enums;
+using NhanhVn.EntityFramework.Models;
 
 namespace NhanhVn.EntityFramework
 {
@@ -27,6 +27,7 @@ namespace NhanhVn.EntityFramework
         }
 
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Product> Products { get; set; }
     }
 
 }

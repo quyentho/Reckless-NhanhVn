@@ -1,14 +1,20 @@
 ﻿
+using System.Text.Json.Serialization;
+
 namespace NhanhVn.Common.Models
 {
     public class NhanhProductInventory
     {
         // care
-        public int Remain { get; set; }
-        public int Shipping { get; set; }
-        public int Damaged { get; set; }
-        public int Holding { get; set; }
+        [JsonPropertyName("remain")]
+        public int remain { get; set; }
+        public int shipping { get; set; }
+        public int damaged { get; set; }
+        public int holding { get; set; }
         // care
-        public int Available { get; set; }
+        public int available { get; set; }
+
+        [JsonIgnore]
+        public Dictionary<string,NhanhProductInventory> depots { get; set; }
     }
 }

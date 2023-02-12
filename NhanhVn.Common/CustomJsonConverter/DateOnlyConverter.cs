@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace NhanhVn.Common.CustomJsonConverter
 {
-    public class CustomDateOnlyConverter : JsonConverter<DateOnly>
+    public class DateOnlyConverter : JsonConverter<DateOnly>
     {
         public override void Write(Utf8JsonWriter writer, DateOnly value, JsonSerializerOptions options)
         {

@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace NhanhVn.Common.CustomJsonConverter
 {
-    public class CustomIntConverter : JsonConverter<int>
+    public class IntConverter : JsonConverter<int>
     {
         public override int Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

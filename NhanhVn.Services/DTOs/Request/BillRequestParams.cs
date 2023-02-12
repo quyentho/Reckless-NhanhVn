@@ -6,9 +6,9 @@ namespace NhanhVn.Services.DTOs.Request
 {
     public class BillRequestParams: IRequestParams
     { 
-        [JsonConverter(typeof(CustomDateOnlyConverter))]
+        [JsonConverter(typeof(DateOnlyConverter))]
         public DateOnly? FromDate { get; set; }
-        [JsonConverter(typeof(CustomDateOnlyConverter))]
+        [JsonConverter(typeof(DateOnlyConverter))]
         public DateOnly? ToDate { get; set; }
         public int? Type { get; set; }
         public int? Mode { get; set; }

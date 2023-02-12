@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using EntityFrameworkWithPostgresPOC.Models;
 using NhanhVn.Common.Enums;
 using NhanhVn.Common.Models;
+using NhanhVn.EntityFramework.Models;
 
 namespace EntityFrameworkWithPostgresPOC.AutoMapper
 {
@@ -31,7 +31,7 @@ namespace EntityFrameworkWithPostgresPOC.AutoMapper
                     dest => dest.CalcTotalMoney,
                     opt => opt.MapFrom(src => src.Money));
 
-            CreateMap<NhanhOrderProduct, Product>()
+            CreateMap<NhanhOrderProduct, OrderProduct>()
                 .ForMember(
                     dest => dest.NhanhProductId,
                     opt => opt.MapFrom(src => src.ProductId))
@@ -40,7 +40,7 @@ namespace EntityFrameworkWithPostgresPOC.AutoMapper
                     opt => opt.Ignore())
 
                 ;
-            CreateMap<NhanhBillProduct, Product>()
+            CreateMap<NhanhBillProduct, OrderProduct>()
                 .ForMember(
                     dest => dest.Id,
                     opt => opt.Ignore())
@@ -55,9 +55,27 @@ namespace EntityFrameworkWithPostgresPOC.AutoMapper
                     opt => opt.MapFrom(src => src.Code))
                 ;
 
-            CreateMap<KeyValuePair<string, NhanhBillProduct>, Product>()
+            CreateMap<KeyValuePair<string, NhanhBillProduct>, OrderProduct>()
                 .ConstructUsing(
-                (pair, context) => context.Mapper.Map<NhanhBillProduct, Product>(pair.Value));
+                (pair, context) => context.Mapper.Map<NhanhBillProduct, OrderProduct>(pair.Value));
+
+            CreateMap<NhanhProduct, OrderProduct>()
+                .ForMember(
+                dest => dest.NhanhProductId,
+                opt => opt.MapFrom(src => src.IdNhanh))
+                .ForMember(
+                    dest => dest.ProductName,
+                    opt => opt.MapFrom(src => src.Name))
+                .ForMember(
+                    dest => dest.ProductCode,
+                    opt => opt.MapFrom(src => src.Code))
+                ;
+            CreateMap<NhanhProductInventory, ProductInventory>();
+            CreateMap<NhanhProduct, Product>()
+                .ForMember(
+                    dest => dest.Id,
+                    opt => opt.Ignore());
+                ;
         }
     }
 }

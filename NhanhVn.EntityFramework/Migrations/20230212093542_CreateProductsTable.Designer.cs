@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NhanhVn.EntityFramework;
 using NhanhVn.EntityFramework.Models;
@@ -13,9 +14,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NhanhVn.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230212093542_CreateProductsTable")]
+    partial class CreateProductsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,6 +115,10 @@ namespace NhanhVn.EntityFramework.Migrations
                     b.Property<int>("OverWeightShipFee")
                         .HasColumnType("integer")
                         .HasColumnName("overweightshipfee");
+
+                    b.Property<double>("PreDiscount")
+                        .HasColumnType("double precision")
+                        .HasColumnName("prediscount");
 
                     b.Property<List<OrderProduct>>("Products")
                         .HasColumnType("jsonb")

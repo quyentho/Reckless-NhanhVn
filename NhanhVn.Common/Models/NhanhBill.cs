@@ -14,21 +14,17 @@ namespace NhanhVn.Common.Models
         public string Id { get; set; }
         public string? DepotId { get; set; }
 
-        [JsonConverter(typeof(CustomDateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverter))]
         public DateTime? CreatedDateTime { get; set; }
         public string? CustomerId { get; set; }
         public string? CustomerMobile { get; set; }
 
-        [JsonConverter(typeof(CustomEnumToStringConverter<SaleChannel>))]
+        [JsonConverter(typeof(EnumToStringConverter<SaleChannel>))]
         public SaleChannel SaleChannel { get; set; } = SaleChannel.Retail;
 
         // when discount = 0, it returns number instead of string :))
-        [JsonConverter(typeof(CustomDoubleConverter))]
+        [JsonConverter(typeof(DoubleConverter))]
         public double? Discount { get; set; }
-        public double? PreDiscount
-        {
-            get => Products.Values.Sum(p => p.Price * p.Quantity);
-        }
 
         // tong hoa don
         public double? Money { get; set; }

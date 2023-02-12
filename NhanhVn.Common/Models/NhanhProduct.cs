@@ -11,26 +11,40 @@ namespace NhanhVn.Common.Models
 {
     public class NhanhProduct : INhanhModel
     {
-        public string IdNhanh { get; set; }
-        public string ParentId { get; set; }
-        public string TypeId { get; set; }
-        public string TypeName { get; set; }
+
+
+        public string? IdNhanh { get; set; }
+        [JsonConverter(typeof(DoubleConverter))]
+        public double? Price { get; set; }
+
+        // Sku?
+        public string? Code { get; set; }
+        public string? Barcode { get; set; }
+        public string? Name { get; set; }
+
+        public string? ParentId { get; set; }
+        public string? TypeId { get; set; }
+        public string? TypeName { get; set; }
 
         // gia goc
-        public double AvgCost { get; set; }
-        public string CategoryId { get; set; }
+        [JsonConverter(typeof(DoubleConverter))]
+        public double? AvgCost { get; set; }
+        public string? CategoryId { get; set; }
 
-        // Sku
-        public string Code { get; set; }
-        public string Barcode { get; set; }
-        public string Name { get; set; }
-        public string ImportPrice { get; set; }
-        public double Price { get; set; }
-        public double WholesalePrice { get; set; }
-        public string Status { get; set; }
-        public double Vat { get; set; }
-        public string CreatedDateTime { get; set; }
-        public NhanhProductInventory Inventory { get; set; }
-        public string Unit { get; set; }
+        [JsonConverter(typeof(DoubleConverter))]
+        public double? ImportPrice { get; set; }
+        [JsonConverter(typeof(DoubleConverter))]
+        public double? WholesalePrice { get; set; }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public ProductStatuses Status { get; set; }
+
+        [JsonConverter(typeof(DoubleConverter))]
+        public double? Vat { get; set; }
+        public string? CreatedDateTime { get; set; }
+
+        [JsonPropertyName("inventory")]
+        public NhanhProductInventory? Inventory { get; set; }
+        public string? Unit { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NhanhVn.Common.CustomJsonConverter
 {
-    public class CustomDoubleConverter : JsonConverter<double>
+    public class DoubleConverter : JsonConverter<double>
     {
         public override double Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

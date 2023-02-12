@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NhanhVn.EntityFramework;
 using NhanhVn.EntityFramework.Models;
@@ -13,9 +14,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NhanhVn.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230212081246_RenameProductToOrderProduct")]
+    partial class NotAllowNullAbleOnMoney
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,7 +27,7 @@ namespace NhanhVn.EntityFramework.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("NhanhVn.EntityFramework.Models.Order", b =>
+            modelBuilder.Entity("EntityFrameworkWithPostgresPOC.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,6 +116,10 @@ namespace NhanhVn.EntityFramework.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("overweightshipfee");
 
+                    b.Property<double>("PreDiscount")
+                        .HasColumnType("double precision")
+                        .HasColumnName("prediscount");
+
                     b.Property<List<OrderProduct>>("Products")
                         .HasColumnType("jsonb")
                         .HasColumnName("products");
@@ -150,89 +157,6 @@ namespace NhanhVn.EntityFramework.Migrations
                         .HasName("pk_orders");
 
                     b.ToTable("orders", (string)null);
-                });
-
-            modelBuilder.Entity("NhanhVn.EntityFramework.Models.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<double?>("AvgCost")
-                        .HasColumnType("double precision")
-                        .HasColumnName("avgcost");
-
-                    b.Property<string>("Barcode")
-                        .HasColumnType("text")
-                        .HasColumnName("barcode");
-
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("text")
-                        .HasColumnName("categoryid");
-
-                    b.Property<string>("Code")
-                        .HasColumnType("text")
-                        .HasColumnName("code");
-
-                    b.Property<string>("CreatedDateTime")
-                        .HasColumnType("text")
-                        .HasColumnName("createddatetime");
-
-                    b.Property<string>("IdNhanh")
-                        .HasColumnType("text")
-                        .HasColumnName("idnhanh");
-
-                    b.Property<string>("ImportPrice")
-                        .HasColumnType("text")
-                        .HasColumnName("importprice");
-
-                    b.Property<ProductInventory>("Inventory")
-                        .HasColumnType("jsonb")
-                        .HasColumnName("inventory");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text")
-                        .HasColumnName("name");
-
-                    b.Property<string>("ParentId")
-                        .HasColumnType("text")
-                        .HasColumnName("parentid");
-
-                    b.Property<double?>("Price")
-                        .HasColumnType("double precision")
-                        .HasColumnName("price");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("text")
-                        .HasColumnName("status");
-
-                    b.Property<string>("TypeId")
-                        .HasColumnType("text")
-                        .HasColumnName("typeid");
-
-                    b.Property<string>("TypeName")
-                        .HasColumnType("text")
-                        .HasColumnName("typename");
-
-                    b.Property<string>("Unit")
-                        .HasColumnType("text")
-                        .HasColumnName("unit");
-
-                    b.Property<double?>("Vat")
-                        .HasColumnType("double precision")
-                        .HasColumnName("vat");
-
-                    b.Property<double?>("WholesalePrice")
-                        .HasColumnType("double precision")
-                        .HasColumnName("wholesaleprice");
-
-                    b.HasKey("Id")
-                        .HasName("pk_products");
-
-                    b.ToTable("products", (string)null);
                 });
 #pragma warning restore 612, 618
         }

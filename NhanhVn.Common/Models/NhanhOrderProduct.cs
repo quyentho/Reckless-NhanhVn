@@ -11,13 +11,13 @@ namespace NhanhVn.Common.Models
         public string ProductBarcode { get; set; }
 
         // some how the bill api returns string instead of number and cannot be deserialized.
-        [JsonConverter(typeof(CustomDoubleConverter))]
+        [JsonConverter(typeof(DoubleConverter))]
         public double Price { get; set; }
 
-        [JsonConverter(typeof(CustomIntConverter))]
+        [JsonConverter(typeof(IntConverter))]
         public int Quantity { get; set; }
 
-        [JsonConverter(typeof(CustomDoubleConverter))]
+        [JsonConverter(typeof(DoubleConverter))]
         public double Discount { get; set; }
     }
 }

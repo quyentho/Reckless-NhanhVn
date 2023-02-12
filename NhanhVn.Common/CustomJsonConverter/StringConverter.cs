@@ -2,7 +2,7 @@
 
 namespace NhanhVn.Common.CustomJsonConverter
 {
-    public class CustomStringConverter : System.Text.Json.Serialization.JsonConverter<string>
+    public class StringConverter : System.Text.Json.Serialization.JsonConverter<string>
     {
         public override string Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

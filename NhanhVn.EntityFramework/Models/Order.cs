@@ -1,11 +1,8 @@
-﻿using NhanhVn.Common.CustomJsonConverter;
-using NhanhVn.Common.Enums;
-using NhanhVn.Common.Models;
+﻿using NhanhVn.Common.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
-namespace EntityFrameworkWithPostgresPOC.Models
+namespace NhanhVn.EntityFramework.Models
 {
     public class Order
     {
@@ -51,9 +48,8 @@ namespace EntityFrameworkWithPostgresPOC.Models
         // Tong? thu khach
         public double CalcTotalMoney { get; set; }
 
-        public double PreDiscount { get; set; }
 
         [Column(TypeName = "jsonb")]
-        public List<Product>? Products { get; set; }
+        public List<OrderProduct>? Products { get; set; }
     }
 }

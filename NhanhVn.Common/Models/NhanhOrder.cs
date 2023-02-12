@@ -11,10 +11,10 @@ namespace NhanhVn.Common.Models
 
         // kenh? ban Shopee, Lazada,...
 
-        [JsonConverter(typeof(CustomEnumToStringConverter<SaleChannel>))]
+        [JsonConverter(typeof(EnumToStringConverter<SaleChannel>))]
         public SaleChannel? SaleChannel { get; set; }
         public string? MerchantTrackingNumber { get; set; }
-        [JsonConverter(typeof(CustomDateTimeConverter))]
+        [JsonConverter(typeof(DateTimeConverter))]
         public DateTime CreatedDateTime { get; set; }
         // id? kho hang
         public int? DepotId { get; set; }

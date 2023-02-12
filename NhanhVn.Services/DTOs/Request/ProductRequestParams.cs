@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace NhanhVn.Services.Models.Request
 {
-    // reference https://apidocs.nhanh.vn/order/index
+    // reference https://apidocs.nhanh.vn/product/index
     public class ProductRequestParams : IRequestParams
     {
         public int? Icpp { get; set; } = 50;

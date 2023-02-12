@@ -28,5 +28,9 @@ namespace NhanhVn.Services.DTOs.Response
         // the trick to allow multiple json property name
         [JsonPropertyName("bill")]
         public Dictionary<string, T>  Bill { get => Data;  set { Data = value; } }
+
+        [JsonPropertyName("products")]
+        public Dictionary<string, T>  Products { get => Data;  set { Data = value; } }
     }
+
 }
