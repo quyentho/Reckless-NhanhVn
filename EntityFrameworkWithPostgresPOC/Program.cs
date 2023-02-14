@@ -25,17 +25,17 @@ IMapper mapper = mapperConfig.CreateMapper();
 
 //Get orders
 var orderService = new OrderServices(client);
-Response<NhanhOrder> orderResponses = await orderService.GetOrdersByDatesAsync(new DateTime(2023, 02, 09), new DateTime(2023, 02, 09));
+Response<NhanhOrder> orderResponses = await orderService.GetOrdersByDatesAsync(new DateTime(2023, 02, 10), new DateTime(2023, 02, 10));
 var newOrders = mapper.Map<List<Order>>(orderResponses.Data.Select(d => d.Value));
 await context.Orders.AddRangeAsync(newOrders);
 
 // Get retail bill
 var billservices = new BillServices(client);
-Response<NhanhBill> billResponse = await billservices.GetRetailBillsByDatesAsync(new DateTime(2023, 02, 09), new DateTime(2023, 02, 09));
+Response<NhanhBill> billResponse = await billservices.GetRetailBillsByDatesAsync(new DateTime(2023, 02, 10), new DateTime(2023, 02, 10));
 var newOrders2 = mapper.Map<List<Order>>(billResponse.Data.Select(d => d.Value));
 await context.Orders.AddRangeAsync(newOrders2);
 
-context.SaveChangesAsync();
+await context.SaveChangesAsync();
 
 // Get Products
 var productServices = new ProductServices(client);
@@ -43,7 +43,7 @@ Response<NhanhProduct> productResponse = await productServices.GetAllProducts();
 
 var products = mapper.Map<List<Product>>(productResponse.Data.Select(d => d.Value));
 
-var updateByProperties = new List<string> { nameof(Product.IdNhanh) };
+var updateByProperties = new List<string> { nameof(Product.IdNhanh)};
 
 var bulkConfig = new BulkConfig { UpdateByProperties = updateByProperties };
 await context.BulkInsertOrUpdateAsync(products, bulkConfig);

@@ -11,6 +11,9 @@ namespace EntityFrameworkWithPostgresPOC.AutoMapper
         {
             CreateMap<NhanhOrder, Order>()
                 .ForMember(
+                    dest => dest.ShipFee,
+                    opt => opt.MapFrom(src => src.SaleChannel == SaleChannel.Lazada ? src.CustomerShipFee : src.ShipFee))
+                .ForMember(
                     dest => dest.NhanhId,
                     opt => opt.MapFrom(src => src.Id))
                 .ForMember(
@@ -27,6 +30,12 @@ namespace EntityFrameworkWithPostgresPOC.AutoMapper
                 .ForMember(
                     dest => dest.MoneyDiscount,
                     opt => opt.MapFrom(src => src.Discount))
+                .ForMember(
+                    dest => dest.StatusName,
+                    opt => opt.MapFrom(src => "Thành công"))
+                .ForMember(
+                    dest => dest.StatusCode,
+                    opt => opt.MapFrom(src => OrderStatuses.Success))
                 .ForMember(
                     dest => dest.CalcTotalMoney,
                     opt => opt.MapFrom(src => src.Money));
@@ -75,7 +84,7 @@ namespace EntityFrameworkWithPostgresPOC.AutoMapper
                 .ForMember(
                     dest => dest.Id,
                     opt => opt.Ignore());
-                ;
+            ;
         }
     }
 }
