@@ -14,9 +14,11 @@ namespace NhanhVn.Services.Services
 {
     public class OrderServices : NhanhServiceBase, IOrderServices
     {
-        public OrderServices(HttpClient httpClient) : base(httpClient) { }
-
-        protected override string Url { get => Config.GetRequiredSection("orderApiUrl").Value; }
+        public OrderServices(HttpClient httpClient, string url, NhanhServiceParams nhanhServiceParams) : base(httpClient,nhanhServiceParams)
+        {
+            Url = url;
+        }
+        protected override string Url { get; }
 
         public async Task<Response<NhanhOrder>> GetOrdersByDatesAsync(DateTime fromDate, DateTime toDate)
         {

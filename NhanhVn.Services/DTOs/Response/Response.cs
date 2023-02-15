@@ -11,15 +11,15 @@ namespace NhanhVn.Services.DTOs.Response
 {
     public class Response<T> : IResponse where T : INhanhModel 
     {
-        public int TotalPages { get; set; }
+        public int? TotalPages { get; set; }
 
-        public int TotalRecords { get; set; }
+        public int? TotalRecords { get; set; }
 
-        public int Page { get; set; }
+        public int? Page { get; set; }
 
         // this is for product api
         [JsonPropertyName("currentPage")]
-        public int CurrentPage { get => Page; set { Page = value; } }
+        public int? CurrentPage { get => Page; set { Page = value; } }
 
         [JsonPropertyName("orders")]
         public Dictionary<string,T> Data { get; set; }
@@ -31,6 +31,9 @@ namespace NhanhVn.Services.DTOs.Response
 
         [JsonPropertyName("products")]
         public Dictionary<string, T>  Products { get => Data;  set { Data = value; } }
+
+        [JsonPropertyName("data")]
+        public List<NhanhCategory>  Category { get ;  set ;  }
     }
 
 }

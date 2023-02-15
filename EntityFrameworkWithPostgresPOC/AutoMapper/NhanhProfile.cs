@@ -85,6 +85,9 @@ namespace EntityFrameworkWithPostgresPOC.AutoMapper
                     dest => dest.Id,
                     opt => opt.Ignore());
             ;
+
+            CreateMap<NhanhCategory, Category>()
+            ;
         }
     }
 }

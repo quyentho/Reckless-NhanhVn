@@ -24,6 +24,7 @@ namespace NhanhVn.Common.Enums
         CarrierCanceled,
         SoldOut,
         Returning,
-        Returned
+        Returned,
+        ConfirmReturned
     }
 }

@@ -14,18 +14,20 @@ using System.Text.Json.Serialization;
 
 namespace NhanhVn.Services.Services
 {
-    public class ProductServices : NhanhServiceBase, IProductServices
+    public class CategoryServices : NhanhServiceBase, ICategoryServices
     {
-        public ProductServices(HttpClient httpClient, string url, NhanhServiceParams nhanhServiceParams) : base(httpClient, nhanhServiceParams)
+        public CategoryServices(HttpClient httpClient, string url, NhanhServiceParams nhanhServiceParams) : base(httpClient,nhanhServiceParams)
         {
             Url = url;
         }
+
         protected override string Url { get; }
 
-        public async Task<Response<NhanhProduct>> GetAllProducts()
+        public async Task<Response<NhanhCategory>> GetAllCategoryAsync()
         {
-            var productRequestParams = new ProductRequestParams();
-            return await base.GetAllResponseAsync<ProductRequestParams, NhanhProduct>(productRequestParams);
+            var categoryRequestParams = new CategoryRequestParams();
+
+            return await base.GetResponseAsync<CategoryRequestParams, NhanhCategory>(categoryRequestParams,null);
         }
     }
 }

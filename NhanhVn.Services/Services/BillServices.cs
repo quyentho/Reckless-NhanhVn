@@ -16,9 +16,12 @@ namespace NhanhVn.Services.Services
 {
     public class BillServices : NhanhServiceBase, IBillServices
     {
-        public BillServices(HttpClient httpClient) : base(httpClient) { }
+        public BillServices(HttpClient httpClient, string url, NhanhServiceParams nhanhServiceParams) : base(httpClient, nhanhServiceParams)
+        {
+            Url = url;
+        }
 
-        protected override string Url { get => Config.GetRequiredSection("billApiUrl").Value; }
+        protected override string Url { get; }
 
         public async Task<Response<NhanhBill>> GetRetailBillsByDatesAsync(DateTime fromDate, DateTime toDate)
         {

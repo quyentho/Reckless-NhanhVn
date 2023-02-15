@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NhanhVn.EntityFramework;
 using NhanhVn.EntityFramework.Models;
@@ -13,9 +14,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NhanhVn.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230214112040_UseNhanhID")]
+    partial class UseNhanhID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,6 +48,7 @@ namespace NhanhVn.EntityFramework.Migrations
                         .HasColumnName("name");
 
                     b.Property<string>("ParentId")
+                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("parent_id");
 
@@ -156,7 +160,7 @@ namespace NhanhVn.EntityFramework.Migrations
 
                     b.Property<string>("SaleChannel")
                         .HasMaxLength(20)
-                        .HasColumnType("varchar(20)")
+                        .HasColumnType("VARCHAR")
                         .HasColumnName("sale_channel");
 
                     b.Property<int>("ShipFee")

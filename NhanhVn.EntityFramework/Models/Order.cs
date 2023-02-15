@@ -11,7 +11,7 @@ namespace NhanhVn.EntityFramework.Models
 
         // kenh? ban Shopee, Lazada,...
 
-        [Column(TypeName = "VARCHAR")]
+        [Column(TypeName = "varchar(20)")]
         [StringLength(20)]
         public SaleChannel? SaleChannel { get; set; }
         public string? MerchantTrackingNumber { get; set; }

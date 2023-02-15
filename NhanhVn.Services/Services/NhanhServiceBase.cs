@@ -11,32 +11,22 @@ namespace NhanhVn.Services.Services
 {
     public abstract class NhanhServiceBase
     {
-        public static IConfiguration Config { get; set; }
-        private static readonly string _version;
-        private static readonly string _appId;
-        private static readonly string _businessId;
-        private static readonly string _accessToken;
+        private readonly string _version;
+        private readonly string _appId;
+        private readonly string _businessId;
+        private readonly string _accessToken;
         private readonly HttpClient _httpClient;
 
         protected abstract string Url { get; }
 
-        static NhanhServiceBase()
-        {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile("appsettings.development.json", optional: true, reloadOnChange: true)
-                .Build();
 
-            Config = config;
-            _version = config.GetRequiredSection("Version").Value;
-            _appId = config.GetRequiredSection("AppId").Value;
-            _businessId = config.GetRequiredSection("businessid").Value;
-            _accessToken = config.GetRequiredSection("AccessToken").Value;
-        }
-
-        protected NhanhServiceBase(HttpClient httpClient)
+        protected NhanhServiceBase(HttpClient httpClient,NhanhServiceParams nhanhServiceParams)
         {
             this._httpClient = httpClient;
+            _version = nhanhServiceParams.Version;
+            _appId = nhanhServiceParams.AppId;
+            _businessId = nhanhServiceParams.BusinessId;
+            _accessToken = nhanhServiceParams.AccessToken;
         }
 
         protected async Task<Response<ResponseType>> GetAllResponseAsync<RequestParamsType, ResponseType>(IRequestParams orderRequestParams)
@@ -71,7 +61,7 @@ namespace NhanhVn.Services.Services
             return firstPageResponse;
         }
 
-        private async Task<Response<ResponseType>> GetResponseAsync<RequestParamsType, ResponseType>(IRequestParams orderRequestParams)
+        public async Task<Response<ResponseType>> GetResponseAsync<RequestParamsType, ResponseType>(IRequestParams orderRequestParams, string? dataKeyPath = "data")
             where ResponseType : INhanhModel
             where RequestParamsType : IRequestParams
 
@@ -95,7 +85,7 @@ namespace NhanhVn.Services.Services
             response.EnsureSuccessStatusCode();
             var responseContent = await response.Content.ReadAsStringAsync();
 
-            return JsonHelpers.DeserializeByPath<Response<ResponseType>>(responseContent, "data", options);
+            return JsonHelpers.DeserializeByPath<Response<ResponseType>>(responseContent, dataKeyPath, options);
         }
     }
 }

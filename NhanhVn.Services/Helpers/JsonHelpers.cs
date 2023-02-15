@@ -10,6 +10,10 @@ namespace NhanhVn.Services.Helpers
         private static JsonElement GetPropertyByKeyPath(JsonElement node, string keyPath)
         {
             var currentNode = node;
+            if(keyPath is null)
+            {
+                return currentNode;
+            }
             var keys = keyPath.Split('.');
 
             foreach (var key in keys)
