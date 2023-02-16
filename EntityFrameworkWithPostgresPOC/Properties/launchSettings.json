@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "EntityFrameworkWithPostgresPOC": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
