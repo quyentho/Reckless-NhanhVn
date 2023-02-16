@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkWithPostgresPOC", "EntityFrameworkWithPostgresPOC\EntityFrameworkWithPostgresPOC.csproj", "{F50E7866-8877-44A0-8FD2-CCC2227CC5F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NhanhVn.Job", "NhanhVn.Job\NhanhVn.Job.csproj", "{F50E7866-8877-44A0-8FD2-CCC2227CC5F9}"
 	ProjectSection(ProjectDependencies) = postProject
 		{16CB658B-EC24-4FD6-A2C3-EA5C7504246B} = {16CB658B-EC24-4FD6-A2C3-EA5C7504246B}
 		{EADC0FEC-A026-48A0-ABDF-DA68EF4DD688} = {EADC0FEC-A026-48A0-ABDF-DA68EF4DD688}
