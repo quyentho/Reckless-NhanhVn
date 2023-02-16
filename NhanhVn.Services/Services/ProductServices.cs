@@ -22,7 +22,7 @@ namespace NhanhVn.Services.Services
         }
         protected override string Url { get; }
 
-        public async Task<Response<NhanhProduct>> GetAllProducts()
+        public async Task<Response<NhanhProduct>?> GetAllProducts()
         {
             var productRequestParams = new ProductRequestParams();
             return await base.GetAllResponseAsync<ProductRequestParams, NhanhProduct>(productRequestParams);

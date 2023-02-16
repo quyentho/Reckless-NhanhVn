@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NhanhVn.Services.DTOs.Response
 {
-    public class Response<T> : IResponse where T : INhanhModel 
+    public class Response<T> : IResponse where T : INhanhModel
     {
         public int? TotalPages { get; set; }
 
@@ -22,18 +22,18 @@ namespace NhanhVn.Services.DTOs.Response
         public int? CurrentPage { get => Page; set { Page = value; } }
 
         [JsonPropertyName("orders")]
-        public Dictionary<string,T> Data { get; set; }
+        public Dictionary<string, T> Data { get; set; } = new Dictionary<string, T>();
 
         //https://stackoverflow.com/a/43715009/11309214
         // the trick to allow multiple json property name
         [JsonPropertyName("bill")]
-        public Dictionary<string, T>  Bill { get => Data;  set { Data = value; } }
+        public Dictionary<string, T> Bill { get => Data; set { Data = value; } }
 
         [JsonPropertyName("products")]
-        public Dictionary<string, T>  Products { get => Data;  set { Data = value; } }
+        public Dictionary<string, T> Products { get => Data; set { Data = value; } }
 
         [JsonPropertyName("data")]
-        public List<NhanhCategory>  Category { get ;  set ;  }
+        public List<NhanhCategory> Category { get; set; } = new List<NhanhCategory> { };    
     }
 
 }

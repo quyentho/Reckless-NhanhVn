@@ -12,8 +12,6 @@ using Hangfire.Console;
 
 internal class Program
 {
-    private const string CronExpression = "30 23 * * *";
-
     private static async Task Main(string[] args)
     {
         HttpClient client = new HttpClient();
@@ -23,7 +21,7 @@ internal class Program
 
         var config = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .AddJsonFile("appsettings.development.json", optional: true, reloadOnChange: true)
+            //.AddJsonFile("appsettings.development.json", optional: true, reloadOnChange: true)
             .Build();
 
         var connectionString = config.GetConnectionString("Default");
@@ -60,10 +58,13 @@ internal class Program
 
         var jobManager = builder.Services.GetRequiredService<IRecurringJobManager>();
 
+        //await job.ExecuteFromDate(new DateTime(2023, 1, 1));
+        //Console.ReadKey();
+        var cron = config.GetSection("CronExpression").Value;
         using (var server = new BackgroundJobServer())
         {
             Console.WriteLine("Hangfire Server started. Press any key to exit...");
-            jobManager.AddOrUpdate("nhanh-job", () => job.Execute(), CronExpression, TimeZoneHelpers.GetVietnamTimeZone());
+            jobManager.AddOrUpdate("nhanh-job", () => job.Execute(null), cron, TimeZoneHelpers.GetVietnamTimeZone());
             Console.ReadKey();
         }
     }

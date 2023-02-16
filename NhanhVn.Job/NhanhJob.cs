@@ -28,12 +28,21 @@ namespace EntityFrameworkWithPostgresPOC
             this.config = config;
             this.nhanhServiceParams = nhanhServiceParams;
         }
-        public async Task Execute()
+        public async Task ExecuteFromDate(DateTime? dateTime)
         {
-            Console.WriteLine("Running MyJob at " + DateTime.Now);
-
-            // debug
-            var now = TimeZoneInfo.ConvertTime(DateTime.Now.AddDays(-1), TimeZoneHelpers.GetVietnamTimeZone());
+            if (dateTime is not null)
+            {
+                for (DateTime date = dateTime.Value; date < DateTime.Now; date = date.AddDays(1))
+                {
+                    await Execute(date);
+                }
+            }
+        }
+        public async Task Execute(DateTime? dateTime = null)
+        {
+            var date = dateTime ?? DateTime.Now;
+            Console.WriteLine("Running MyJob at " + date);
+            var now = TimeZoneInfo.ConvertTime(date, TimeZoneHelpers.GetVietnamTimeZone());
             Console.WriteLine("fetching orders");
             ////Get orders
             var orderService = new OrderServices(client, config.GetRequiredSection("orderApiUrl").Value, nhanhServiceParams);

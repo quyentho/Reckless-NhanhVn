@@ -1,13 +1,14 @@
-﻿using System.Text.Json;
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Text.Json;
 
 namespace NhanhVn.Services.Helpers
 {
     public class JsonHelpers
     {
-        private static JsonElement GetPropertyByKeyPath(JsonElement node, string keyPath)
+        private static JsonElement? GetPropertyByKeyPath(JsonElement node, string keyPath)
         {
             var currentNode = node;
-            if(keyPath is null)
+            if (keyPath is null)
             {
                 return currentNode;
             }
@@ -21,20 +22,21 @@ namespace NhanhVn.Services.Helpers
                 }
                 else
                 {
-                    return default;
+                    return null;
                 }
             }
 
             return currentNode;
         }
 
-        public static T DeserializeByPath<T>(string jsonString, string keyPath, JsonSerializerOptions? options = null)
+        public static T? DeserializeByPath<T>(string jsonString, string keyPath, JsonSerializerOptions? options = null)
             where T : class
         {
             using JsonDocument document = JsonDocument.Parse(jsonString);
 
-            JsonElement element = GetPropertyByKeyPath(document.RootElement, keyPath);
-            return element.Deserialize<T>(options);
+            JsonElement? element = GetPropertyByKeyPath(document.RootElement, keyPath);
+
+            return element == null ? null : element.Value.Deserialize<T>(options);
         }
     }
 }

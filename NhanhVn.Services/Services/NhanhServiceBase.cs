@@ -29,11 +29,15 @@ namespace NhanhVn.Services.Services
             _accessToken = nhanhServiceParams.AccessToken;
         }
 
-        protected async Task<Response<ResponseType>> GetAllResponseAsync<RequestParamsType, ResponseType>(IRequestParams orderRequestParams)
-            where ResponseType : INhanhModel
+        protected async Task<Response<ResponseType>?> GetAllResponseAsync<RequestParamsType, ResponseType>(IRequestParams orderRequestParams)
+            where ResponseType : INhanhModel, new()
             where RequestParamsType : IRequestParams
         {
             var firstPageResponse = await GetResponseAsync<RequestParamsType, ResponseType>(orderRequestParams);
+            if(firstPageResponse == null)
+            {
+                return new Response<ResponseType>();
+            }
 
             if (firstPageResponse.TotalPages == 1)
             {
@@ -61,7 +65,7 @@ namespace NhanhVn.Services.Services
             return firstPageResponse;
         }
 
-        public async Task<Response<ResponseType>> GetResponseAsync<RequestParamsType, ResponseType>(IRequestParams orderRequestParams, string? dataKeyPath = "data")
+        public async Task<Response<ResponseType>?> GetResponseAsync<RequestParamsType, ResponseType>(IRequestParams orderRequestParams, string? dataKeyPath = "data")
             where ResponseType : INhanhModel
             where RequestParamsType : IRequestParams
 
