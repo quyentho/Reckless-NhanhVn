@@ -22,3 +22,9 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=root
     ports:
     - "5050:80"
+  # nhanhvn:
+  #   container_name: nhanhvn
+  #   build: .
+  #   image: quyentho/nhanhvn
+  #   depends_on:
+  #       - db

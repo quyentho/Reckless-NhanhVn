@@ -12,6 +12,7 @@ obj/
 *.sln.docstates
 
 # Environment specific settings
+appsettings.*.json
 
 # User-specific settings
 *.user
