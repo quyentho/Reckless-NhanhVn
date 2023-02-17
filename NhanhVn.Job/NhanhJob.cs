@@ -43,6 +43,9 @@ namespace EntityFrameworkWithPostgresPOC
             var date = dateTime ?? DateTime.Now;
             Console.WriteLine("Running MyJob at " + date);
             var now = TimeZoneInfo.ConvertTime(date, TimeZoneHelpers.GetVietnamTimeZone());
+
+            now = now.AddDays(config.GetValue<int>("DaysToAdd"));
+
             Console.WriteLine("fetching orders");
             ////Get orders
             var orderService = new OrderServices(client, config.GetRequiredSection("orderApiUrl").Value, nhanhServiceParams);

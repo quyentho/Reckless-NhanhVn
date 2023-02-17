@@ -59,6 +59,7 @@ internal class Program
         var jobManager = builder.Services.GetRequiredService<IRecurringJobManager>();
 
         //await job.ExecuteFromDate(new DateTime(2023, 1, 1));
+        //await job.Execute(new DateTime(2023,2,17));
         //Console.ReadKey();
         var cron = config.GetSection("CronExpression").Value;
         using (var server = new BackgroundJobServer())
