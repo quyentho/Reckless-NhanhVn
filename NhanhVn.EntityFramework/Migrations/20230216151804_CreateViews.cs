@@ -10,26 +10,68 @@ namespace NhanhVn.EntityFramework.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
+            migrationBuilder.Sql(@"
+ DROP VIEW public.revenue_overview_group;
+
+
+CREATE OR REPLACE VIEW public.revenue_overview_group
+ AS
+ SELECT q.date,
+    q.sale_channel,
+    count(q.nhanh_id) AS ""order"",
+	sum(q.item_quantity) as item_quantity,
+    sum(q.pre_discount) AS pre_discount,
+    sum(q.discount) AS discount,
+    sum(q.gross_revenue) AS gross_revenue,
+    sum(q.ship_fee) AS ship_fee,
+    sum(q.customer_ship_fee) AS customer_ship_fee,
+    sum(q.discount_ship) AS discount_ship,
+    sum(q.net_revenue) AS net_revenue,
+	q.cogs as cogs
+   FROM (
+	   SELECT o.nhanh_id,
+            date(o.created_date_time) AS date,
+                CASE o.sale_channel
+                    WHEN 'Facebook'::text THEN 'Meta'::character varying
+                    WHEN 'Instagram'::text THEN 'Meta'::character varying
+                    ELSE o.sale_channel
+                END AS sale_channel,
+            sum(p.price * ((elem.value ->> 'Quantity'::text)::integer)::double precision) AS pre_discount,
+            sum(p.price * ((elem.value ->> 'Quantity'::text)::integer)::double precision) - (o.calc_total_money - o.customer_ship_fee::double precision) AS discount,
+            o.calc_total_money + o.money_transfer AS gross_revenue,
+            o.ship_fee,
+            o.customer_ship_fee,
+	   	p.avg_cost as cogs,
+		 sum(((elem.value ->> 'Quantity'::text)::integer)::double precision) AS item_quantity,
+            o.ship_fee - o.customer_ship_fee AS discount_ship,
+            o.calc_total_money - o.ship_fee::double precision AS net_revenue
+           FROM orders o,
+            LATERAL jsonb_array_elements(o.products) elem(value)
+             JOIN products p ON p.id_nhanh = (elem.value ->> 'NhanhProductId'::text)
+          GROUP BY o.ship_fee,	p.avg_cost, o.customer_ship_fee, o.nhanh_id, o.created_date_time, o.sale_channel, o.money_discount, o.calc_total_money, o.money_transfer) q
+  GROUP BY q.date, q.sale_channel, q.cogs; 
+");
             migrationBuilder.Sql(
                 @"
                 DROP VIEW IF EXISTS revenue_overview;
 
-                CREATE VIEW revenue_overview AS
-                SELECT o.nhanh_id,
-                       date(o.created_date_time), 
-                       o.sale_channel,
-                       SUM((p.price * (elem->>'Quantity')::integer)) as pre_discount,
-                       SUM((p.price * (elem->>'Quantity')::integer)) - (o.calc_total_money - o.customer_ship_fee) as discount,
-                       o.calc_total_money as gross_revenue,
-                       o.ship_fee,
-                       o.customer_ship_fee,
-                       o.ship_fee - o.customer_ship_fee as discount_ship,
-                       o.calc_total_money - o.ship_fee as net_revenue
-                FROM public.orders as o,
-                jsonb_array_elements(o.products) elem
-                JOIN products p ON p.id_nhanh = (elem->>'NhanhProductId')
-                WHERE o.status_code != 'Canceled'
-                GROUP BY o.ship_fee, o.customer_ship_fee,o.nhanh_id,o.created_date_time, o.sale_channel, o.money_discount, o.calc_total_money;
+CREATE OR REPLACE VIEW public.revenue_overview
+ AS
+ SELECT o.nhanh_id,
+    date(o.created_date_time) AS date,
+    o.sale_channel,
+    sum(p.price * ((elem.value ->> 'Quantity'::text)::integer)::double precision) AS pre_discount,
+    sum(p.price * ((elem.value ->> 'Quantity'::text)::integer)::double precision) - (o.calc_total_money - o.customer_ship_fee::double precision) AS discount,
+    o.calc_total_money + o.money_transfer AS gross_revenue,
+    o.ship_fee,
+    o.customer_ship_fee,
+    o.ship_fee - o.customer_ship_fee AS discount_ship,
+    o.calc_total_money - o.ship_fee::double precision AS net_revenue
+   FROM orders o,
+    LATERAL jsonb_array_elements(o.products) elem(value)
+     JOIN products p ON p.id_nhanh = (elem.value ->> 'NhanhProductId'::text)
+  GROUP BY o.ship_fee, o.customer_ship_fee, o.nhanh_id, o.created_date_time, o.sale_channel, o.money_discount, o.calc_total_money, o.money_transfer;
                 "
                 );
             migrationBuilder.Sql(
