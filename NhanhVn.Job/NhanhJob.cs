@@ -40,13 +40,13 @@ namespace EntityFrameworkWithPostgresPOC
         }
         public async Task Execute(DateTime? dateTime = null)
         {
-            var date = dateTime ?? DateTime.Now;
-            Console.WriteLine("Running MyJob at " + date + " server time");
-            var now = TimeZoneInfo.ConvertTime(date, TimeZoneHelpers.GetVietnamTimeZone());
-            Console.WriteLine("Running MyJob at " + date + " Vietnam time");
+            var now = dateTime ?? DateTime.UtcNow;
+            Console.WriteLine("Running MyJob at " + now + " utc time");
+            now = TimeZoneInfo.ConvertTime(now, TimeZoneHelpers.GetVietnamTimeZone());
+            Console.WriteLine("Running MyJob at " + now + " Vietnam time");
 
             now = now.AddDays(config.GetValue<int>("DaysToAdd"));
-            Console.WriteLine("Getting data for " + date.Date);
+            Console.WriteLine("Getting data for " + now.Date);
 
             Console.WriteLine("fetching orders");
             ////Get orders
